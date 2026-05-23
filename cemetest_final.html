@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEME Test</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:sans-serif;background:#f4f4f6;color:#222;padding:16px}
+.screen{display:none}.screen.active{display:block}
+h1{font-size:22px;font-weight:700;margin-bottom:4px;letter-spacing:-0.5px}
+h2{font-size:18px;font-weight:600;margin-bottom:6px}
+p{font-size:14px;line-height:1.6;color:#555;margin-bottom:10px}
+.badge{display:inline-block;font-size:12px;padding:3px 11px;border-radius:20px;margin-right:6px;margin-bottom:4px;font-weight:500}
+.badge.c{background:#ede9ff;color:#4a3fbf}
+.badge.e{background:#d9f5ec;color:#0d6e50}
+.badge.m{background:#fdeede;color:#9a4510}
+.badge.x{background:#fde0ec;color:#9a1545}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.mode-card{background:#fff;border:2px solid #e0e0e0;border-radius:12px;padding:14px 16px;cursor:pointer;transition:all 0.15s;text-align:left}
+.mode-card:hover{border-color:#9990e0;background:#f8f7ff}
+.mode-card.selected{border-color:#3a3585;background:#f0eeff}
+.mode-card .mode-title{font-size:15px;font-weight:700;margin-bottom:3px;color:#222}
+.mode-card .mode-tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;margin-bottom:6px}
+.mode-card .mode-desc{font-size:12px;color:#777;line-height:1.5}
+.mode-card .mode-count{font-size:12px;font-weight:600;color:#3a3585;margin-top:6px}
+.tag-full{background:#e8e6ff;color:#3a3585}
+.tag-lite{background:#d9f5ec;color:#0d6e50}
+.tag-ultra{background:#fff3cc;color:#7a6000}
+.tag-nada{background:#ffe0e0;color:#9a1010}
+.mode-card.selected .mode-title{color:#3a3585}
+.start-row{display:flex;align-items:center;gap:12px;margin-top:4px}
+.mode-warning{font-size:12px;color:#c07000;background:#fff8e0;border:1px solid #f0d870;border-radius:8px;padding:8px 12px;display:none;margin-top:8px}
+.btn{display:inline-block;padding:9px 22px;border:1.5px solid #bbb;border-radius:8px;background:#fff;color:#333;cursor:pointer;font-size:14px;transition:background 0.15s}
+.btn:hover{background:#f0f0f0}
+.btn.primary{background:#3a3585;border-color:#3a3585;color:#fff}
+.btn.primary:hover{background:#2a2565}
+.btn:disabled{opacity:0.4;cursor:not-allowed}
+.progress-wrap{margin-bottom:6px}
+.progress-bar{width:100%;height:6px;background:#ddd;border-radius:3px}
+.progress-fill{height:6px;background:#3a3585;border-radius:3px;transition:width 0.3s}
+.progress-text{font-size:11px;color:#aaa;margin-top:4px;margin-bottom:14px}
+.qblock{background:#fff;border:1.5px solid #e4e4e4;border-radius:12px;padding:16px;margin-bottom:10px;transition:border-color 0.2s}
+.qblock.answered{border-color:#b0c4ff}
+.qtext{font-size:14px;color:#222;margin-bottom:12px;line-height:1.5;font-weight:500}
+.likert-wrap{display:flex;flex-direction:column;gap:6px}
+.likert-row{display:flex;gap:6px}
+.lbtn{flex:1;padding:10px 4px;font-size:13px;font-weight:600;border:2px solid #ddd;border-radius:9px;background:#f8f8f8;color:#999;cursor:pointer;text-align:center;transition:all 0.15s;line-height:1}
+.lbtn:hover{background:#eeeeff;border-color:#9990e0;color:#4a3fbf}
+.lbtn.sel-1{background:#ffe8e8;border-color:#e05555;color:#c0272d;transform:scale(1.06)}
+.lbtn.sel-2{background:#ffd6a0;border-color:#e07830;color:#a04800;transform:scale(1.06)}
+.lbtn.sel-3{background:#fff3cc;border-color:#c9a800;color:#7a6000;transform:scale(1.06)}
+.lbtn.sel-4{background:#d6f0d0;border-color:#3aaa50;color:#1a6e30;transform:scale(1.06)}
+.lbtn.sel-5{background:#c8e8ff;border-color:#2277cc;color:#0a4a99;transform:scale(1.06)}
+.likert-labels{display:flex;justify-content:space-between;font-size:10px;color:#bbb;padding:0 2px}
+.warn{color:#c0392b;font-size:12px;margin-top:10px;display:none;padding:8px 12px;background:#fff0f0;border:1px solid #f5c6c6;border-radius:8px}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.chart-card{background:#fff;border:1.5px solid #e4e4e4;border-radius:12px;padding:16px}
+.card-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.cat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.chart-card h3{font-size:14px;font-weight:700}
+.chart-desc{font-size:11px;color:#999;margin-bottom:10px;line-height:1.5}
+.canvas-wrap{position:relative;width:100%;height:200px;margin-bottom:10px}
+.sbar-row{display:flex;align-items:center;font-size:10px;color:#777;margin-bottom:5px;gap:6px}
+.sbar-label{flex:0 0 128px;line-height:1.3}
+.sbar-bg{flex:1;height:5px;background:#eee;border-radius:3px}
+.sbar-fill{height:5px;border-radius:3px}
+.sbar-val{width:30px;text-align:right;font-weight:700;font-size:10px}
+.retake-row{text-align:center;padding-top:4px}
+hr{border:none;border-top:1px solid #eee;margin:14px 0}
+@media(max-width:520px){
+  .mode-grid{grid-template-columns:1fr}
+  .charts-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro-screen" class="screen active">
+  <h1>CEME Test</h1>
+  <p style="color:#999;font-size:13px;margin-bottom:14px">Cognition · Emotion · Motivation · Expression</p>
+  <p>A personality assessment measuring four core dimensions of how you think, feel, act, and present yourself. Answer honestly — there are no right or wrong answers.</p>
+  <p style="margin-top:6px">
+    <span class="badge c">Cognition</span>
+    <span class="badge e">Emotion</span>
+    <span class="badge m">Motivation</span>
+    <span class="badge x">Expression</span>
+  </p>
+  <p style="margin-top:12px;font-weight:600;font-size:14px;color:#333">Choose your experience:</p>
+  <div class="mode-grid">
+    <div class="mode-card" id="mode-full" onclick="selectMode('full')">
+      <div class="mode-title">Full</div>
+      <span class="mode-tag tag-full">144 questions</span>
+      <div class="mode-desc">3 regular + 3 reversed per subsection. The complete CEME experience with maximum accuracy.</div>
+      <div class="mode-count">~15 min</div>
+    </div>
+    <div class="mode-card" id="mode-lite" onclick="selectMode('lite')">
+      <div class="mode-title">Lite</div>
+      <span class="mode-tag tag-lite">96 questions</span>
+      <div class="mode-desc">2 regular + 2 reversed per subsection. Slightly reduced but still highly accurate.</div>
+      <div class="mode-count">~10 min</div>
+    </div>
+    <div class="mode-card" id="mode-ultra" onclick="selectMode('ultra')">
+      <div class="mode-title">Ultra-Lite</div>
+      <span class="mode-tag tag-ultra">48 questions</span>
+      <div class="mode-desc">1 regular + 1 reversed per subsection. Good enough for a casual sense of your personality.</div>
+      <div class="mode-count">~5 min</div>
+    </div>
+    <div class="mode-card" id="mode-nada" onclick="selectMode('nada')">
+      <div class="mode-title">Nada</div>
+      <span class="mode-tag tag-nada">24 questions</span>
+      <div class="mode-desc">1 random question per subsection — regular or reversed. Not recommended, but gives a quick gist.</div>
+      <div class="mode-count">~2 min</div>
+    </div>
+  </div>
+  <div class="mode-warning" id="nada-warning">⚠ Nada mode may significantly reduce result accuracy. Best used as a casual preview only.</div>
+  <div class="start-row">
+    <button class="btn primary" id="start-btn" disabled>Begin assessment</button>
+    <span id="selected-label" style="font-size:13px;color:#aaa">Select a mode above</span>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-screen" class="screen">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+    <div class="progress-text" id="prog-text"></div>
+  </div>
+  <div id="q-container"></div>
+  <div class="warn" id="warn-msg">⚠ Please answer all questions on this page before continuing.</div>
+  <div class="nav">
+    <button class="btn" id="prev-btn">← Back</button>
+    <button class="btn primary" id="next-btn">Next →</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="results-screen" class="screen">
+  <h2>Your CEME results</h2>
+  <p style="color:#aaa;font-size:13px;margin-bottom:14px" id="results-sub"></p>
+  <div class="charts-grid" id="charts-grid"></div>
+  <hr>
+  <div class="retake-row"><button class="btn" id="retake-btn">↺ Retake assessment</button></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+var ALL_QS=[
+  // COGNITION
+  {cat:'Cognition',sub:'Theoretical Preference',text:'I naturally look for patterns when learning something new.',rev:false},
+  {cat:'Cognition',sub:'Theoretical Preference',text:'I enjoy discussing abstract ideas, even if they aren\'t practical.',rev:false},
+  {cat:'Cognition',sub:'Theoretical Preference',text:'Hypotheticals can be valuable even without clear conclusions.',rev:false},
+  {cat:'Cognition',sub:'Theoretical Preference',text:'I lose interest when discussions become too hypothetical.',rev:true},
+  {cat:'Cognition',sub:'Theoretical Preference',text:'I prefer clear facts over open-ended interpretation.',rev:true},
+  {cat:'Cognition',sub:'Theoretical Preference',text:'If an idea cannot be applied practically, I usually don\'t care about it.',rev:true},
+  {cat:'Cognition',sub:'Structure Inclination',text:'I feel comfortable when expectations are clearly defined.',rev:false},
+  {cat:'Cognition',sub:'Structure Inclination',text:'I usually prefer a plan before starting something.',rev:false},
+  {cat:'Cognition',sub:'Structure Inclination',text:'I often use a checklist or schedule to stay on track with goals.',rev:false},
+  {cat:'Cognition',sub:'Structure Inclination',text:'Too much structure feels restricting.',rev:true},
+  {cat:'Cognition',sub:'Structure Inclination',text:'I dislike following the same routine often.',rev:true},
+  {cat:'Cognition',sub:'Structure Inclination',text:'I often let the day unfold without a clear schedule.',rev:true},
+  {cat:'Cognition',sub:'Novelty Seeking',text:'I actively seek new experiences I haven\'t tried before.',rev:false},
+  {cat:'Cognition',sub:'Novelty Seeking',text:'I enjoy trying new ways of doing things.',rev:false},
+  {cat:'Cognition',sub:'Novelty Seeking',text:'Unexpected changes excite me.',rev:false},
+  {cat:'Cognition',sub:'Novelty Seeking',text:'I usually prefer familiar methods over trying new ones.',rev:true},
+  {cat:'Cognition',sub:'Novelty Seeking',text:'I avoid unfamiliar ideas or experiences.',rev:true},
+  {cat:'Cognition',sub:'Novelty Seeking',text:'I rarely change the way I do things once a method works.',rev:true},
+  {cat:'Cognition',sub:'Uncertainty Tolerance',text:'Unexpected situations do not overwhelm me easily.',rev:false},
+  {cat:'Cognition',sub:'Uncertainty Tolerance',text:'I can handle improvising solutions.',rev:false},
+  {cat:'Cognition',sub:'Uncertainty Tolerance',text:'I can stay interested in questions without clear answers.',rev:false},
+  {cat:'Cognition',sub:'Uncertainty Tolerance',text:'I become uncomfortable when situations lack clear direction.',rev:true},
+  {cat:'Cognition',sub:'Uncertainty Tolerance',text:'Not knowing what happens next makes me anxious.',rev:true},
+  {cat:'Cognition',sub:'Uncertainty Tolerance',text:'I struggle to adapt when things stop going as planned.',rev:true},
+  {cat:'Cognition',sub:'Internal Assessment',text:'I naturally try to understand how systems work internally.',rev:false},
+  {cat:'Cognition',sub:'Internal Assessment',text:'I enjoy trying to optimize processes.',rev:false},
+  {cat:'Cognition',sub:'Internal Assessment',text:'I often try to break down tasks to simpler parts mentally.',rev:false},
+  {cat:'Cognition',sub:'Internal Assessment',text:'Understanding how things work internally does not interest me much.',rev:true},
+  {cat:'Cognition',sub:'Internal Assessment',text:'I prefer not to analyze how systems are built or derived.',rev:true},
+  {cat:'Cognition',sub:'Internal Assessment',text:'I often don\'t try to delve deeper into concepts I already know.',rev:true},
+  {cat:'Cognition',sub:'Situational Flexibility',text:'Changing my opinion after new information feels natural.',rev:false},
+  {cat:'Cognition',sub:'Situational Flexibility',text:'I like to argue just to explore new viewpoints and ideas.',rev:false},
+  {cat:'Cognition',sub:'Situational Flexibility',text:'I enjoy hearing critique of my conclusions.',rev:false},
+  {cat:'Cognition',sub:'Situational Flexibility',text:'I dislike reviewing conclusions I have already settled on.',rev:true},
+  {cat:'Cognition',sub:'Situational Flexibility',text:'Once I have an opinion, I rarely stray from it.',rev:true},
+  {cat:'Cognition',sub:'Situational Flexibility',text:'I prefer not to revisit decisions I\'ve made.',rev:true},
+  // EMOTION
+  {cat:'Emotion',sub:'Emotional Transparency',text:'People can usually tell how I feel.',rev:false},
+  {cat:'Emotion',sub:'Emotional Transparency',text:'I find emotional openness relieving.',rev:false},
+  {cat:'Emotion',sub:'Emotional Transparency',text:'I openly communicate my feelings.',rev:false},
+  {cat:'Emotion',sub:'Emotional Transparency',text:'I instinctively hide strong emotions.',rev:true},
+  {cat:'Emotion',sub:'Emotional Transparency',text:'I prefer to keep difficult emotions private.',rev:true},
+  {cat:'Emotion',sub:'Emotional Transparency',text:'Expressing my emotions openly feels uncomfortable.',rev:true},
+  {cat:'Emotion',sub:'Personal Vulnerability',text:'I\'m comfortable discussing personal fears with people I trust.',rev:false},
+  {cat:'Emotion',sub:'Personal Vulnerability',text:'Being emotionally understood is important to me.',rev:false},
+  {cat:'Emotion',sub:'Personal Vulnerability',text:'I feel comfortable opening up emotionally to people I trust.',rev:false},
+  {cat:'Emotion',sub:'Personal Vulnerability',text:'I avoid conversations that make me emotionally exposed.',rev:true},
+  {cat:'Emotion',sub:'Personal Vulnerability',text:'I dislike people knowing my fears.',rev:true},
+  {cat:'Emotion',sub:'Personal Vulnerability',text:'Opening up emotionally to others feels difficult for me.',rev:true},
+  {cat:'Emotion',sub:'Social Recovery',text:'Being around people usually increases my energy.',rev:false},
+  {cat:'Emotion',sub:'Social Recovery',text:'I often seek social interaction when I feel low or unstimulated.',rev:false},
+  {cat:'Emotion',sub:'Social Recovery',text:'Spending time with others usually leaves me feeling refreshed.',rev:false},
+  {cat:'Emotion',sub:'Social Recovery',text:'Extended social interaction leaves me emotionally drained.',rev:true},
+  {cat:'Emotion',sub:'Social Recovery',text:'I often need time alone after emotionally intense situations.',rev:true},
+  {cat:'Emotion',sub:'Social Recovery',text:'Too much social interaction overwhelms me after a while.',rev:true},
+  {cat:'Emotion',sub:'Expression Intensity',text:'I experience emotions very strongly.',rev:false},
+  {cat:'Emotion',sub:'Expression Intensity',text:'Music, stories, or art affect me deeply.',rev:false},
+  {cat:'Emotion',sub:'Expression Intensity',text:'My emotions often linger long after something happens.',rev:false},
+  {cat:'Emotion',sub:'Expression Intensity',text:'My emotional reactions tend to fade quickly.',rev:true},
+  {cat:'Emotion',sub:'Expression Intensity',text:'I rarely feel emotionally overwhelmed by experiences.',rev:true},
+  {cat:'Emotion',sub:'Expression Intensity',text:'Emotional events usually do not affect me very deeply.',rev:true},
+  {cat:'Emotion',sub:'Conflict Orientation',text:'I address problems between people directly.',rev:false},
+  {cat:'Emotion',sub:'Conflict Orientation',text:'I prefer resolving issues rather than leaving them unresolved.',rev:false},
+  {cat:'Emotion',sub:'Conflict Orientation',text:'I try to stop or cool tensions before they grow.',rev:false},
+  {cat:'Emotion',sub:'Conflict Orientation',text:'I often try to avoid conflicts.',rev:true},
+  {cat:'Emotion',sub:'Conflict Orientation',text:'When something bothers me, I try to ignore it.',rev:true},
+  {cat:'Emotion',sub:'Conflict Orientation',text:'I usually wait for interpersonal problems to resolve themselves.',rev:true},
+  {cat:'Emotion',sub:'Empathy Tendency',text:'Other people\'s feelings can affect my mood.',rev:false},
+  {cat:'Emotion',sub:'Empathy Tendency',text:'I often instinctively notice emotional shifts in conversations.',rev:false},
+  {cat:'Emotion',sub:'Empathy Tendency',text:'I try to address the mood of others when I talk to them.',rev:false},
+  {cat:'Emotion',sub:'Empathy Tendency',text:'I find it hard to understand other people\'s emotions.',rev:true},
+  {cat:'Emotion',sub:'Empathy Tendency',text:'My emotions feel independent to others.',rev:true},
+  {cat:'Emotion',sub:'Empathy Tendency',text:'I rarely adjust my behaviour based on other people\'s emotions.',rev:true},
+  // MOTIVATION
+  {cat:'Motivation',sub:'Mastery Desire',text:'Improving at something is satisfying even without recognition.',rev:false},
+  {cat:'Motivation',sub:'Mastery Desire',text:'I enjoy practicing skills repeatedly.',rev:false},
+  {cat:'Motivation',sub:'Mastery Desire',text:'I feel motivated to master something I know.',rev:false},
+  {cat:'Motivation',sub:'Mastery Desire',text:'I lose motivation once I become competent.',rev:true},
+  {cat:'Motivation',sub:'Mastery Desire',text:'I rarely continue practicing skills once they become frustrating.',rev:true},
+  {cat:'Motivation',sub:'Mastery Desire',text:'Being good enough is usually enough for me.',rev:true},
+  {cat:'Motivation',sub:'Recognition Sensitivity',text:'Being recognized for my efforts feels important to me.',rev:false},
+  {cat:'Motivation',sub:'Recognition Sensitivity',text:'I feel more driven when my efforts are appreciated.',rev:false},
+  {cat:'Motivation',sub:'Recognition Sensitivity',text:'I often seek opinions in others for what I do.',rev:false},
+  {cat:'Motivation',sub:'Recognition Sensitivity',text:'I would still pursue my goals even if nobody knew.',rev:true},
+  {cat:'Motivation',sub:'Recognition Sensitivity',text:'I do not need acknowledgment to feel satisfied with my efforts.',rev:true},
+  {cat:'Motivation',sub:'Recognition Sensitivity',text:'External recognition rarely changes how motivated I feel.',rev:true},
+  {cat:'Motivation',sub:'Competitive Spirit',text:'Comparing myself to others increases my motivation.',rev:false},
+  {cat:'Motivation',sub:'Competitive Spirit',text:'Competition energizes me.',rev:false},
+  {cat:'Motivation',sub:'Competitive Spirit',text:'I feel motivated by people better than me.',rev:false},
+  {cat:'Motivation',sub:'Competitive Spirit',text:'I dislike having to compete with others.',rev:true},
+  {cat:'Motivation',sub:'Competitive Spirit',text:'Seeing people better than me feels discouraging.',rev:true},
+  {cat:'Motivation',sub:'Competitive Spirit',text:'I try not to compare skills with other people.',rev:true},
+  {cat:'Motivation',sub:'Persistence Style',text:'I continue projects even after losing excitement.',rev:false},
+  {cat:'Motivation',sub:'Persistence Style',text:'I usually finish what I start.',rev:false},
+  {cat:'Motivation',sub:'Persistence Style',text:'I can continue working even when progress feels slow.',rev:false},
+  {cat:'Motivation',sub:'Persistence Style',text:'Repeated setbacks make me disengage quickly.',rev:true},
+  {cat:'Motivation',sub:'Persistence Style',text:'When I hit a roadblock, it\'s hard for me to start again.',rev:true},
+  {cat:'Motivation',sub:'Persistence Style',text:'I often lose interest and stop working on a project quickly.',rev:true},
+  {cat:'Motivation',sub:'Autonomy Preference',text:'I prefer figuring things out on my own.',rev:false},
+  {cat:'Motivation',sub:'Autonomy Preference',text:'Too much external direction frustrates me.',rev:false},
+  {cat:'Motivation',sub:'Autonomy Preference',text:'I work best when I can decide how to approach something.',rev:false},
+  {cat:'Motivation',sub:'Autonomy Preference',text:'I enjoy having someone else write guidelines.',rev:true},
+  {cat:'Motivation',sub:'Autonomy Preference',text:'I feel more comfortable when expectations are set by others.',rev:true},
+  {cat:'Motivation',sub:'Autonomy Preference',text:'I work best when I listen to strict rules and expectations.',rev:true},
+  {cat:'Motivation',sub:'Group Alignment',text:'Being part of a group motivates me.',rev:false},
+  {cat:'Motivation',sub:'Group Alignment',text:'Shared goals are more satisfying than personal achievement alone.',rev:false},
+  {cat:'Motivation',sub:'Group Alignment',text:'Feeling connected to a community is important to me.',rev:false},
+  {cat:'Motivation',sub:'Group Alignment',text:'I rarely feel attached to communities.',rev:true},
+  {cat:'Motivation',sub:'Group Alignment',text:'I usually feel more connected to my own goals than group identity.',rev:true},
+  {cat:'Motivation',sub:'Group Alignment',text:'I wouldn\'t consider myself part of many groups.',rev:true},
+  // EXPRESSION
+  {cat:'Expression',sub:'Aesthetic Experimentation',text:'I enjoy changing how I present myself.',rev:false},
+  {cat:'Expression',sub:'Aesthetic Experimentation',text:'Visual aesthetics strongly affect my mood.',rev:false},
+  {cat:'Expression',sub:'Aesthetic Experimentation',text:'I experiment with different looks and identities.',rev:false},
+  {cat:'Expression',sub:'Aesthetic Experimentation',text:'I don\'t care much for how I look or present myself.',rev:true},
+  {cat:'Expression',sub:'Aesthetic Experimentation',text:'I usually stick to whatever looks natural to me.',rev:true},
+  {cat:'Expression',sub:'Aesthetic Experimentation',text:'I prefer consistency in how I present myself.',rev:true},
+  {cat:'Expression',sub:'Sincerity Orientation',text:'Conversations feel better when people communicate genuinely and directly.',rev:false},
+  {cat:'Expression',sub:'Sincerity Orientation',text:'I prefer expressing feelings clearly rather than indirectly.',rev:false},
+  {cat:'Expression',sub:'Sincerity Orientation',text:'Emotional honesty is important in conversations.',rev:false},
+  {cat:'Expression',sub:'Sincerity Orientation',text:'I often express genuine feelings through humour or irony.',rev:true},
+  {cat:'Expression',sub:'Sincerity Orientation',text:'Overly sincere conversations make me uncomfortable.',rev:true},
+  {cat:'Expression',sub:'Sincerity Orientation',text:'I tend to soften conversations with jokes or sarcasm.',rev:true},
+  {cat:'Expression',sub:'Taboo Tolerance',text:'Very few topics in conversation feel off-limits to me.',rev:false},
+  {cat:'Expression',sub:'Taboo Tolerance',text:'I enjoy humour that surprises or shocks others.',rev:false},
+  {cat:'Expression',sub:'Taboo Tolerance',text:'I can handle provocative or controversial topics in conversation.',rev:false},
+  {cat:'Expression',sub:'Taboo Tolerance',text:'Certain topics should stay socially restricted.',rev:true},
+  {cat:'Expression',sub:'Taboo Tolerance',text:'Some forms of humour feel inappropriate no matter the context.',rev:true},
+  {cat:'Expression',sub:'Taboo Tolerance',text:'Controversial topics often make me uncomfortable.',rev:true},
+  {cat:'Expression',sub:'Niche Engagement',text:'I tend to become deeply invested in specific interests.',rev:false},
+  {cat:'Expression',sub:'Niche Engagement',text:'My interests often become part of my identity.',rev:false},
+  {cat:'Expression',sub:'Niche Engagement',text:'I enjoy learning extensive details about things I like.',rev:false},
+  {cat:'Expression',sub:'Niche Engagement',text:'I prefer keeping my interests casual.',rev:true},
+  {cat:'Expression',sub:'Niche Engagement',text:'I don\'t like making my interests part of my identity.',rev:true},
+  {cat:'Expression',sub:'Niche Engagement',text:'My hobbies feel separate from my identity.',rev:true},
+  {cat:'Expression',sub:'Performative Expression',text:'I exaggerate stories for emotional effect.',rev:false},
+  {cat:'Expression',sub:'Performative Expression',text:'I enjoy making conversations more entertaining.',rev:false},
+  {cat:'Expression',sub:'Performative Expression',text:'I naturally become more expressive around people.',rev:false},
+  {cat:'Expression',sub:'Performative Expression',text:'I usually keep my expressions subtle rather than exaggerated.',rev:true},
+  {cat:'Expression',sub:'Performative Expression',text:'I often hold back how expressive I could be in conversations.',rev:true},
+  {cat:'Expression',sub:'Performative Expression',text:'I tend to downplay my personality when interacting with others.',rev:true},
+  {cat:'Expression',sub:'Cultural Adaptability',text:'Different social groups bring out different sides in me.',rev:false},
+  {cat:'Expression',sub:'Cultural Adaptability',text:'I adjust how I communicate depending on who I talk to.',rev:false},
+  {cat:'Expression',sub:'Cultural Adaptability',text:'I naturally adapt my tone and expression to different social situations.',rev:false},
+  {cat:'Expression',sub:'Cultural Adaptability',text:'I prefer presenting myself consistently across social groups.',rev:true},
+  {cat:'Expression',sub:'Cultural Adaptability',text:'I usually behave the same way regardless of who I\'m with.',rev:true},
+  {cat:'Expression',sub:'Cultural Adaptability',text:'I don\'t change how I express myself based on social context.',rev:true},
+];
+
+var CAT_META={
+  'Cognition': {color:'#6C63D8',bg:'rgba(108,99,216,0.12)',desc:'How you process information, ideas, patterns, and uncertainty.'},
+  'Emotion':   {color:'#1D9E75',bg:'rgba(29,158,117,0.12)', desc:'How you interact with and control emotions personally and socially.'},
+  'Motivation':{color:'#E07B39',bg:'rgba(224,123,57,0.12)', desc:'How you energize and persevere effort in your projects.'},
+  'Expression':{color:'#C0366A',bg:'rgba(192,54,106,0.12)', desc:'How you externalize your personality to the world.'},
+};
+var CAT_ORDER=['Cognition','Emotion','Motivation','Expression'];
+var BTN_SEL=['sel-1','sel-2','sel-3','sel-4','sel-5'];
+var MODE_INFO={
+  full: {label:'Full',      count:144, time:'~15 min', reg:3, rev:3, nada:false},
+  lite: {label:'Lite',      count:96,  time:'~10 min', reg:2, rev:2, nada:false},
+  ultra:{label:'Ultra-Lite',count:48,  time:'~5 min',  reg:1, rev:1, nada:false},
+  nada: {label:'Nada',      count:24,  time:'~2 min',  reg:0, rev:0, nada:true},
+};
+
+var selectedMode=null, questions=[], answers={}, currentPage=0, PAGE_SIZE=20, totalPages=0, chartInstances=[];
+
+function shuffle(arr){
+  var a=arr.slice();
+  for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}
+  return a;
+}
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+}
+function selectMode(m){
+  selectedMode=m;
+  document.querySelectorAll('.mode-card').forEach(function(c){c.classList.remove('selected');});
+  document.getElementById('mode-'+m).classList.add('selected');
+  var info=MODE_INFO[m];
+  document.getElementById('start-btn').disabled=false;
+  document.getElementById('selected-label').textContent=info.label+' · '+info.count+' questions · '+info.time;
+  document.getElementById('nada-warning').style.display=(m==='nada')?'block':'none';
+}
+function buildQuestions(mode){
+  var groups={};
+  ALL_QS.forEach(function(q){
+    var key=q.cat+'||'+q.sub;
+    if(!groups[key]) groups[key]={reg:[],rev:[]};
+    if(q.rev) groups[key].rev.push(q); else groups[key].reg.push(q);
+  });
+  var result=[];
+  var info=MODE_INFO[mode];
+  Object.keys(groups).forEach(function(key){
+    var g=groups[key];
+    if(info.nada){
+      var pool=g.reg.concat(g.rev);
+      result.push(pool[Math.floor(Math.random()*pool.length)]);
+    } else {
+      result=result.concat(shuffle(g.reg).slice(0,info.reg)).concat(shuffle(g.rev).slice(0,info.rev));
+    }
+  });
+  return shuffle(result);
+}
+function startQuiz(){
+  if(!selectedMode) return;
+  questions=buildQuestions(selectedMode); answers={}; currentPage=0;
+  totalPages=Math.ceil(questions.length/PAGE_SIZE);
+  showScreen('quiz-screen'); renderPage();
+}
+function renderPage(){
+  var start=currentPage*PAGE_SIZE, end=Math.min(start+PAGE_SIZE,questions.length);
+  var pct=Math.round((currentPage/totalPages)*100);
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-text').textContent=
+    'Page '+(currentPage+1)+' of '+totalPages+' · Questions '+(start+1)+'–'+end+' · '+MODE_INFO[selectedMode].label+' mode';
+  document.getElementById('warn-msg').style.display='none';
+  document.getElementById('prev-btn').disabled=(currentPage===0);
+  document.getElementById('next-btn').textContent=(currentPage===totalPages-1)?'See my results →':'Next →';
+  var container=document.getElementById('q-container'); container.innerHTML='';
+  for(var i=start;i<end;i++){
+    (function(idx){
+      var q=questions[idx];
+      var block=document.createElement('div');
+      block.className='qblock'+(answers[idx]!==undefined?' answered':'');
+      block.id='qblock-'+idx;
+      var qtxt=document.createElement('div'); qtxt.className='qtext';
+      qtxt.textContent=(idx+1)+'. '+q.text; block.appendChild(qtxt);
+      var wrap=document.createElement('div'); wrap.className='likert-wrap';
+      var row=document.createElement('div'); row.className='likert-row';
+      for(var v=1;v<=5;v++){
+        (function(val){
+          var btn=document.createElement('button');
+          btn.className='lbtn'+(answers[idx]===val?' '+BTN_SEL[val-1]:'');
+          btn.textContent=val; btn.type='button';
+          btn.addEventListener('click',function(){
+            answers[idx]=val;
+            document.getElementById('qblock-'+idx).classList.add('answered');
+            row.querySelectorAll('.lbtn').forEach(function(b,bi){
+              b.className='lbtn'+(bi+1===val?' '+BTN_SEL[bi]:'');
+            });
+          });
+          row.appendChild(btn);
+        })(v);
+      }
+      wrap.appendChild(row);
+      var ends=document.createElement('div'); ends.className='likert-labels';
+      ends.innerHTML='<span>Strongly disagree</span><span>Strongly agree</span>';
+      wrap.appendChild(ends); block.appendChild(wrap); container.appendChild(block);
+    })(i);
+  }
+}
+function navigate(dir){
+  if(dir===1){
+    var start=currentPage*PAGE_SIZE, end=Math.min(start+PAGE_SIZE,questions.length);
+    for(var i=start;i<end;i++){
+      if(answers[i]===undefined){document.getElementById('warn-msg').style.display='block';return;}
+    }
+    if(currentPage===totalPages-1){showResults();return;}
+    currentPage++;
+  } else {if(currentPage>0) currentPage--;}
+  window.scrollTo(0,0); renderPage();
+}
+function computeScores(){
+  var totals={},counts={};
+  questions.forEach(function(q,i){
+    if(answers[i]===undefined) return;
+    var score=q.rev?(6-answers[i]):answers[i];
+    var key=q.cat+'||'+q.sub;
+    totals[key]=(totals[key]||0)+score; counts[key]=(counts[key]||0)+1;
+  });
+  var result={};
+  Object.keys(totals).forEach(function(key){
+    var p=key.split('||'),cat=p[0],sub=p[1];
+    if(!result[cat]) result[cat]={};
+    result[cat][sub]=Math.round((totals[key]/counts[key]/5)*100);
+  });
+  return result;
+}
+function showResults(){
+  chartInstances.forEach(function(c){c.destroy();}); chartInstances=[];
+  var scores=computeScores();
+  var info=MODE_INFO[selectedMode];
+  showScreen('results-screen');
+  document.getElementById('results-sub').textContent='Based on '+questions.length+' responses · '+info.label+' mode';
+  var grid=document.getElementById('charts-grid'); grid.innerHTML='';
+  CAT_ORDER.forEach(function(cat){
+    var meta=CAT_META[cat];
+    var subs=[];
+    ALL_QS.forEach(function(q){if(q.cat===cat&&subs.indexOf(q.sub)===-1) subs.push(q.sub);});
+    var vals=subs.map(function(s){return scores[cat]&&scores[cat][s]!==undefined?scores[cat][s]:0;});
+    var card=document.createElement('div'); card.className='chart-card';
+    var header=document.createElement('div'); header.className='card-header';
+    var dot=document.createElement('div'); dot.className='cat-dot'; dot.style.background=meta.color; header.appendChild(dot);
+    var h3=document.createElement('h3'); h3.textContent=cat; header.appendChild(h3); card.appendChild(header);
+    var desc=document.createElement('div'); desc.className='chart-desc'; desc.textContent=meta.desc; card.appendChild(desc);
+    var wrap=document.createElement('div'); wrap.className='canvas-wrap';
+    var canvas=document.createElement('canvas'); canvas.id='chart-'+cat;
+    wrap.appendChild(canvas); card.appendChild(wrap);
+    var barList=document.createElement('div');
+    subs.forEach(function(s,i){
+      var row=document.createElement('div'); row.className='sbar-row';
+      var lbl=document.createElement('span'); lbl.className='sbar-label'; lbl.textContent=s;
+      var bg=document.createElement('div'); bg.className='sbar-bg';
+      var fill=document.createElement('div'); fill.className='sbar-fill';
+      fill.style.width=vals[i]+'%'; fill.style.background=meta.color; bg.appendChild(fill);
+      var v=document.createElement('span'); v.className='sbar-val'; v.textContent=vals[i]+'%';
+      row.appendChild(lbl); row.appendChild(bg); row.appendChild(v); barList.appendChild(row);
+    });
+    card.appendChild(barList); grid.appendChild(card);
+    var shortLabels=subs.map(function(s){return s.split(' ').slice(0,2).join('\n');});
+    var inst=new Chart(canvas,{
+      type:'radar',
+      data:{labels:shortLabels,datasets:[{label:cat,data:vals,borderColor:meta.color,backgroundColor:meta.bg,pointBackgroundColor:meta.color,pointRadius:4,borderWidth:2}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{r:{min:0,max:100,ticks:{stepSize:25,font:{size:9},color:'#bbb',backdropColor:'transparent'},
+          pointLabels:{font:{size:9},color:'#666'},grid:{color:'rgba(0,0,0,0.07)'},angleLines:{color:'rgba(0,0,0,0.07)'}}}}
+    });
+    chartInstances.push(inst);
+  });
+}
+
+document.getElementById('start-btn').addEventListener('click',startQuiz);
+document.getElementById('prev-btn').addEventListener('click',function(){navigate(-1);});
+document.getElementById('next-btn').addEventListener('click',function(){navigate(1);});
+document.getElementById('retake-btn').addEventListener('click',function(){selectedMode=null;showScreen('intro-screen');});
+</script>
+</body>
+</html>
