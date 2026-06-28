@@ -27,7 +27,7 @@ p{font-size:14px;line-height:1.6;color:#555;margin-bottom:10px}
 .mode-card .mode-count{font-size:12px;font-weight:600;color:#3a3585;margin-top:6px}
 .tag-full{background:#e8e6ff;color:#3a3585}
 .tag-lite{background:#d9f5ec;color:#0d6e50}
-.tag-ultra{background:#fff3cc;color:#7a6000}
+.tag-base{background:#fff3cc;color:#7a6000}
 .tag-nada{background:#ffe0e0;color:#9a1010}
 .mode-card.selected .mode-title{color:#3a3585}
 .start-row{display:flex;align-items:center;gap:12px;margin-top:4px}
@@ -100,7 +100,7 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
 <div id="intro-screen" class="screen active">
   <h1>CEME Test</h1>
   <p style="color:#999;font-size:13px;margin-bottom:14px">Cognition · Emotion · Motivation · Expression</p>
-  <p>A personality assessment measuring four core dimensions of how you think, feel, act, and present yourself. Answer honestly — there are no right or wrong answers.</p>
+  <p>A personality assessment based on four core domains, which are split into six additional subsections. It is designed to glance into how you think, react, find motivation, and express yourself. Answer honestly!</p>
   <p style="margin-top:6px">
     <span class="badge c">Cognition</span>
     <span class="badge e">Emotion</span>
@@ -121,9 +121,9 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
       <div class="mode-desc">2 regular + 2 reversed per subsection. Slightly reduced but still highly accurate.</div>
       <div class="mode-count">~10 min</div>
     </div>
-    <div class="mode-card" id="mode-ultra" onclick="selectMode('ultra')">
-      <div class="mode-title">Ultra-Lite</div>
-      <span class="mode-tag tag-ultra">48 questions</span>
+    <div class="mode-card" id="mode-base" onclick="selectMode('base')">
+      <div class="mode-title">Base</div>
+      <span class="mode-tag tag-base">48 questions</span>
       <div class="mode-desc">1 regular + 1 reversed per subsection. Good enough for a casual sense of your personality.</div>
       <div class="mode-count">~5 min</div>
     </div>
@@ -158,8 +158,9 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
 <!-- RESULTS -->
 <div id="results-screen" class="screen">
   <h2>Your CEME results</h2>
-  <p style="color:#aaa;font-size:13px;margin-bottom:2px" id="results-sub"></p>
-  <p style="font-size:11px;color:#bbb;margin-bottom:14px">Tap any subsection name to learn what it measures.</p>
+  <p style="color:#aaa;font-size:16px;margin-bottom:2px" id="results-sub"></p>
+  <p style="font-size:16px;color:#aaa;margin-bottom:14px">Tap any subsection name to learn what it measures.</p>
+  <p style="font-size:12px;color:#bbb;margin-bottom:14px">Remember that the CEME Test is strictly for fun and should be treated as such!</p>
   <div class="charts-grid" id="charts-grid"></div>
   <hr>
   <div class="retake-row"><button class="btn" id="retake-btn">↺ Retake assessment</button></div>
@@ -363,11 +364,11 @@ var BTN_SEL=['sel-1','sel-2','sel-3','sel-4','sel-5'];
 var MODE_INFO={
   full: {label:'Full',      count:144, time:'~15 min', reg:3, rev:3, nada:false},
   lite: {label:'Lite',      count:96,  time:'~10 min', reg:2, rev:2, nada:false},
-  ultra:{label:'Ultra-Lite',count:48,  time:'~5 min',  reg:1, rev:1, nada:false},
+  base:{label:'Base',count:48,  time:'~5 min',  reg:1, rev:1, nada:false},
   nada: {label:'Nada',      count:24,  time:'~2 min',  reg:0, rev:0, nada:true},
 };
 
-var selectedMode=null,questions=[],answers={},currentPage=0,PAGE_SIZE=20,totalPages=0,chartInstances=[];
+var selectedMode=null,questions=[],answers={},currentPage=0,PAGE_SIZE=16,totalPages=0,chartInstances=[];
 
 function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function showScreen(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});document.getElementById(id).classList.add('active');}
