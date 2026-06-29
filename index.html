@@ -39,15 +39,12 @@ p{font-size:14px;line-height:1.6;color:#555;margin-bottom:10px}
 .btn.success{background:#1D9E75;border-color:#1D9E75;color:#fff}
 .btn.success:hover{background:#0d7a58}
 .btn:disabled{opacity:0.4;cursor:not-allowed}
-
-/* Load code section on intro */
 .load-section{margin-top:20px;padding-top:16px;border-top:1px solid #e8e8e8}
 .load-section p{font-size:13px;color:#888;margin-bottom:8px}
 .load-row{display:flex;gap:8px;align-items:center}
 .load-input{flex:1;padding:8px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;font-family:monospace;color:#333;background:#fff;outline:none;transition:border-color 0.15s}
 .load-input:focus{border-color:#3a3585}
 .load-error{font-size:12px;color:#c0392b;margin-top:6px;display:none}
-
 .progress-wrap{margin-bottom:6px}
 .progress-bar{width:100%;height:6px;background:#ddd;border-radius:3px}
 .progress-fill{height:6px;background:#3a3585;border-radius:3px;transition:width 0.3s}
@@ -67,7 +64,6 @@ p{font-size:14px;line-height:1.6;color:#555;margin-bottom:10px}
 .likert-labels{display:flex;justify-content:space-between;font-size:10px;color:#bbb;padding:0 2px}
 .warn{color:#c0392b;font-size:12px;margin-top:10px;display:none;padding:8px 12px;background:#fff0f0;border:1px solid #f5c6c6;border-radius:8px}
 .nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
-
 /* Results */
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
 .chart-card{background:#fff;border:1.5px solid #e4e4e4;border-radius:12px;padding:16px}
@@ -85,8 +81,6 @@ p{font-size:14px;line-height:1.6;color:#555;margin-bottom:10px}
 .sbar-bg{flex:1;height:5px;background:#eee;border-radius:3px}
 .sbar-fill{height:5px;border-radius:3px}
 .sbar-val{width:30px;text-align:right;font-weight:700;font-size:10px}
-
-/* Result code box */
 .result-code-section{background:#f0eeff;border:1.5px solid #c5bff5;border-radius:12px;padding:16px;margin-bottom:16px}
 .result-code-section h3{font-size:13px;font-weight:700;color:#3a3585;margin-bottom:4px}
 .result-code-section p{font-size:12px;color:#666;margin-bottom:10px}
@@ -95,12 +89,8 @@ p{font-size:14px;line-height:1.6;color:#555;margin-bottom:10px}
 .copy-btn{padding:9px 16px;border:1.5px solid #3a3585;border-radius:8px;background:#3a3585;color:#fff;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap;transition:all 0.15s}
 .copy-btn:hover{background:#2a2565}
 .copy-btn.copied{background:#1D9E75;border-color:#1D9E75}
-
-/* Viewing mode banner */
 .viewing-banner{background:#e0f5ee;border:1.5px solid #8dd5be;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:#0d6e50;display:none}
 .viewing-banner strong{font-weight:700}
-
-/* Tooltip popup */
 .tooltip-overlay{display:none;position:fixed;inset:0;z-index:100;align-items:center;justify-content:center;background:rgba(0,0,0,0.35);padding:20px}
 .tooltip-overlay.show{display:flex}
 .tooltip-box{background:#fff;border-radius:14px;padding:20px;max-width:320px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative}
@@ -109,12 +99,76 @@ p{font-size:14px;line-height:1.6;color:#555;margin-bottom:10px}
 .tooltip-desc{font-size:13px;color:#555;line-height:1.6}
 .tooltip-close{position:absolute;top:12px;right:14px;font-size:18px;color:#aaa;cursor:pointer;line-height:1;background:none;border:none;padding:0}
 .tooltip-close:hover{color:#333}
-
 .retake-row{text-align:center;padding-top:4px}
 hr{border:none;border-top:1px solid #eee;margin:14px 0}
+
+/* ── Comparison screen ────────────────────────────────── */
+.cmp-input-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.cmp-input-card{background:#fff;border:1.5px solid #e4e4e4;border-radius:12px;padding:14px}
+.cmp-input-card.a .cmp-label{color:#3a3585}
+.cmp-input-card.b .cmp-label{color:#C0366A}
+.cmp-label{font-size:12px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.cmp-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}
+.cmp-input{width:100%;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;font-family:monospace;color:#333;background:#f8f8f8;outline:none;transition:border-color 0.15s}
+.cmp-input:focus{border-color:#3a3585;background:#fff}
+.cmp-error{font-size:11px;color:#c0392b;margin-top:5px;display:none}
+.cmp-btn-row{display:flex;justify-content:center;margin-top:4px}
+
+/* Overall similarity bar */
+.sim-overall{background:#fff;border:1.5px solid #e4e4e4;border-radius:12px;padding:16px;margin-bottom:14px}
+.sim-overall-title{font-size:13px;font-weight:700;color:#333;margin-bottom:4px}
+.sim-overall-sub{font-size:11px;color:#999;margin-bottom:12px}
+.sim-big{font-size:36px;font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+.sim-big-bar-bg{width:100%;height:10px;background:#eee;border-radius:5px;margin-bottom:14px}
+.sim-big-bar-fill{height:10px;border-radius:5px;background:linear-gradient(90deg,#6C63D8,#C0366A);transition:width 0.5s}
+
+/* Per-category similarity */
+.sim-cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.sim-cat-card{background:#fff;border:1.5px solid #e4e4e4;border-radius:10px;padding:12px}
+.sim-cat-name{font-size:12px;font-weight:700;margin-bottom:6px}
+.sim-cat-pct{font-size:20px;font-weight:800;margin-bottom:4px}
+.sim-cat-bar-bg{width:100%;height:5px;background:#eee;border-radius:3px}
+.sim-cat-bar-fill{height:5px;border-radius:3px}
+
+/* Divergence table */
+.div-section{background:#fff;border:1.5px solid #e4e4e4;border-radius:12px;padding:16px;margin-bottom:14px}
+.div-section h3{font-size:13px;font-weight:700;color:#333;margin-bottom:10px}
+.div-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:11px}
+.div-rank{flex:0 0 20px;font-weight:700;color:#aaa;text-align:right}
+.div-sub{flex:1;color:#444;font-weight:500}
+.div-cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.div-bar-wrap{flex:0 0 80px;height:5px;background:#eee;border-radius:3px;position:relative}
+.div-bar-fill{height:5px;border-radius:3px;position:absolute;top:0;left:0}
+.div-val{flex:0 0 28px;text-align:right;font-weight:700;color:#555}
+.div-arrow{flex:0 0 16px;text-align:center;font-size:12px}
+.most-tag{font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:4px;background:#ffe0e0;color:#9a1010}
+.least-tag{font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:4px;background:#d6f0d0;color:#1a6e30}
+
+/* Comparison chart cards */
+.cmp-chart-card{background:#fff;border:1.5px solid #e4e4e4;border-radius:12px;padding:16px}
+.cmp-legend{display:flex;gap:14px;margin-bottom:8px}
+.cmp-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:#555}
+.cmp-legend-dot{width:10px;height:3px;border-radius:2px;flex-shrink:0}
+
+/* dual sbar */
+.dual-sbar-row{margin-bottom:8px}
+.dual-sbar-label-row{display:flex;align-items:center;gap:4px;margin-bottom:3px}
+.dual-sbar-label{font-size:10px;color:#555;cursor:pointer;border-bottom:1px dotted #ccc}
+.dual-sbar-label:hover{color:#3a3585}
+.dual-sbar-info{font-size:10px;color:#bbb;cursor:pointer}
+.dual-sbar-info:hover{color:#3a3585}
+.dual-bars{display:flex;flex-direction:column;gap:2px}
+.dual-bar-line{display:flex;align-items:center;gap:5px}
+.dual-bar-who{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dual-bar-bg{flex:1;height:4px;background:#eee;border-radius:2px}
+.dual-bar-fill{height:4px;border-radius:2px}
+.dual-bar-val{width:28px;text-align:right;font-size:10px;font-weight:700;color:#666}
+
 @media(max-width:520px){
   .mode-grid{grid-template-columns:1fr}
   .charts-grid{grid-template-columns:1fr}
+  .cmp-input-grid{grid-template-columns:1fr}
+  .sim-cat-grid{grid-template-columns:1fr}
   .code-display{flex-direction:column;align-items:stretch}
   .load-row{flex-direction:column;align-items:stretch}
 }
@@ -125,6 +179,7 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
 <!-- INTRO -->
 <div id="intro-screen" class="screen active">
   <h1>CEME Test</h1>
+  <p style="color:#999;font-size:13px;margin-bottom:14px">version 1.2, added comparison mode given two CEME ID's</p>
   <p style="color:#999;font-size:13px;margin-bottom:14px">Cognition · Emotion · Motivation · Expression</p>
   <p>A personality assessment based on four core domains, which are split into six additional subsections. It is designed to glance into how you think, react, find motivation, and express yourself. Answer honestly!</p>
   <p style="margin-top:6px">
@@ -165,15 +220,16 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
     <button class="btn primary" id="start-btn" disabled>Begin assessment</button>
     <span id="selected-label" style="font-size:13px;color:#aaa">Select a mode above</span>
   </div>
-
-  <!-- Load results from code -->
   <div class="load-section">
-    <p>Have a result code from a friend? Paste it below to view their results.</p>
+    <p>Have a result code? Paste it below to view someone's results, or <strong>compare two profiles</strong>.</p>
     <div class="load-row">
-      <input class="load-input" id="load-input" type="text" placeholder="Paste CEME code here…" spellcheck="false" autocomplete="off">
-      <button class="btn" id="load-btn">View results</button>
+      <input class="load-input" id="load-input" type="text" placeholder="Paste a CEME code to view results…" spellcheck="false" autocomplete="off">
+      <button class="btn" id="load-btn">View</button>
     </div>
-    <div class="load-error" id="load-error">⚠ Invalid code — please check and try again.</div>
+    <div style="margin-top:8px">
+      <button class="btn" id="compare-btn" style="font-size:13px;padding:7px 16px">⇄ Compare two codes</button>
+    </div>
+    <div class="load-error" id="load-error">⚠ Invalid code, please check and try again.</div>
   </div>
 </div>
 
@@ -197,27 +253,88 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
   <h2 style="color:#aaa;font-size:16px;margin-bottom:2px" id="results-sub"></h2>
   <p style="font-size:16px;color:#aaa;margin-bottom:14px">Tap any subsection name to learn what it measures.</p>
   <p style="font-size:12px;color:#bbb;margin-bottom:14px">Remember that the CEME Test is strictly for fun and should be treated as such!</p>
-
-  <!-- Viewing-someone-else banner -->
   <div class="viewing-banner" id="viewing-banner">
-    <strong>👁 Viewing shared results.</strong> These are not your own — you're seeing someone else's CEME profile.
+    <strong>👁 Viewing shared results.</strong> These are not your own, you're seeing someone else's CEME profile.
   </div>
-
-  <!-- Result code box -->
   <div class="result-code-section" id="code-section">
     <h3>Your result code</h3>
-    <p>Copy and share this code so friends can view your exact results.</p>
+    <p>Copy and share this code so friends can view or compare your results.</p>
     <div class="code-display">
       <div class="code-text" id="code-text">—</div>
       <button class="copy-btn" id="copy-btn">Copy</button>
     </div>
   </div>
-
   <div class="charts-grid" id="charts-grid"></div>
   <hr>
   <h2>Enjoyed the test? Help support it by <a href="https://forms.gle/nq7ZnCQEe6GfudP99" target="_blank" rel="noopener noreferrer">filling out our survey</a>!</h2>
-  <h2>Redeem Survey Code <a href="https://www.surveycircle.com/5P14-P9NL-89EA-ZP3Q/" target="_blank" rel="noopener noreferrer">here!</a> (optional)</h2>
-  <div class="retake-row"><button class="btn" id="retake-btn">↺ Retake assessment</button></div>
+  <div class="retake-row" style="margin-top:12px"><button class="btn" id="retake-btn">↺ Retake assessment</button></div>
+</div>
+
+<!-- COMPARISON INPUT -->
+<div id="compare-screen" class="screen">
+  <h2>Compare two profiles</h2>
+  <p style="color:#888;font-size:13px;margin-bottom:4px">Paste two CEME result codes below to see how they overlap.</p>
+  <div class="cmp-input-grid">
+    <div class="cmp-input-card a">
+      <div class="cmp-label"><span class="cmp-dot" style="background:#3a3585"></span>Profile A</div>
+      <input class="cmp-input" id="cmp-input-a" type="text" placeholder="CEME-…" spellcheck="false" autocomplete="off">
+      <div class="cmp-error" id="cmp-error-a">⚠ Invalid code</div>
+    </div>
+    <div class="cmp-input-card b">
+      <div class="cmp-label"><span class="cmp-dot" style="background:#C0366A"></span>Profile B</div>
+      <input class="cmp-input" id="cmp-input-b" type="text" placeholder="CEME-…" spellcheck="false" autocomplete="off">
+      <div class="cmp-error" id="cmp-error-b">⚠ Invalid code</div>
+    </div>
+  </div>
+  <div class="cmp-btn-row">
+    <button class="btn primary" id="cmp-run-btn">Compare →</button>
+  </div>
+  <div style="margin-top:10px;text-align:center">
+    <button class="btn" id="cmp-back-btn" style="font-size:13px;padding:7px 16px">← Back</button>
+  </div>
+</div>
+
+<!-- COMPARISON RESULTS -->
+<div id="compare-results-screen" class="screen">
+  <h2>Profile comparison</h2>
+  <p style="color:#aaa;font-size:13px;margin-bottom:14px" id="cmp-results-sub"></p>
+
+  <!-- Overall similarity -->
+  <div class="sim-overall">
+    <div class="sim-overall-title">Overall similarity</div>
+    <div class="sim-overall-sub">Average match across all 24 subsections</div>
+    <div class="sim-big" id="sim-big-pct">—</div>
+    <div class="sim-big-bar-bg"><div class="sim-big-bar-fill" id="sim-big-bar"></div></div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <div style="font-size:11px;color:#888"><span style="font-weight:700;color:#3a3585" id="sim-cat-c-pct">—</span> Cognition</div>
+      <div style="font-size:11px;color:#888"><span style="font-weight:700;color:#1D9E75" id="sim-cat-e-pct">—</span> Emotion</div>
+      <div style="font-size:11px;color:#888"><span style="font-weight:700;color:#E07B39" id="sim-cat-m-pct">—</span> Motivation</div>
+      <div style="font-size:11px;color:#888"><span style="font-weight:700;color:#C0366A" id="sim-cat-x-pct">—</span> Expression</div>
+    </div>
+  </div>
+
+  <!-- Per-category similarity cards -->
+  <div class="sim-cat-grid" id="sim-cat-grid"></div>
+
+  <!-- Divergence breakdown -->
+  <div class="div-section">
+    <h3>Most different subsections</h3>
+    <div id="div-most"></div>
+  </div>
+  <div class="div-section">
+    <h3>Most similar subsections</h3>
+    <div id="div-least"></div>
+  </div>
+
+  <!-- Overlapping radar charts -->
+  <h2 style="font-size:15px;margin-bottom:10px">Radar overlay</h2>
+  <div class="charts-grid" id="cmp-charts-grid"></div>
+
+  <hr>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding-top:4px">
+    <button class="btn" id="cmp-results-back-btn">← Compare again</button>
+    <button class="btn" id="cmp-results-home-btn">↺ Home</button>
+  </div>
 </div>
 
 <!-- TOOLTIP OVERLAY -->
@@ -232,36 +349,34 @@ hr{border:none;border-top:1px solid #eee;margin:14px 0}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-// ── Subsection descriptions ──────────────────────────────────────────────────
-var SUB_DESC = {
-  'Theoretical Preference': 'Your openness to abstract ideas, theoretical concepts, and interest in exploring new areas of thought.',
-  'Structure Inclination':  'Your preference for organized structure, planned routines, and procedural methods when approaching tasks.',
-  'Novelty Seeking':        'Your attraction towards unfamiliar ideas, new theories, and personal techniques you haven\'t tried before.',
-  'Uncertainty Tolerance':  'Your comfort with sudden changes, unexpected situations, and unresolved questions that lack clear answers.',
-  'Internal Assessment':    'Your tendency to seek how components interact in a system, gaining a deeper understanding of how things work.',
+var SUB_DESC={
+  'Theoretical Preference':'Your openness to abstract ideas, theoretical concepts, and interest in exploring new areas of thought.',
+  'Structure Inclination':'Your preference for organized structure, planned routines, and procedural methods when approaching tasks.',
+  'Novelty Seeking':'Your attraction towards unfamiliar ideas, new theories, and personal techniques you haven\'t tried before.',
+  'Uncertainty Tolerance':'Your comfort with sudden changes, unexpected situations, and unresolved questions that lack clear answers.',
+  'Internal Assessment':'Your tendency to seek how components interact in a system, gaining a deeper understanding of how things work.',
   'Situational Flexibility':'Your willingness to revise your views, revisit conclusions, and adapt outside familiar frameworks.',
-  'Emotional Transparency': 'Your openness to express your emotions honestly, and to whom, often in ways that happen subconsciously.',
-  'Personal Vulnerability':  'Your comfort in expressing genuine vulnerability and opening up emotionally to people you trust.',
-  'Social Recovery':        'Your reaction to prolonged social contact, as well as your ability to handle and recharge from public interactions.',
-  'Expression Intensity':   'The strength and frequency of your emotional reactions, and how deeply certain triggers affect you.',
-  'Conflict Orientation':   'Your response to conflict and tension, and how you react to social issues or emotional strain between people.',
-  'Empathy Tendency':       'Your tendency to notice, absorb, and respond to the emotions of the people around you.',
-  'Mastery Desire':         'Your personal need to improve your skills or pursue goals all the way to mastery, beyond just competence.',
+  'Emotional Transparency':'Your openness to express your emotions honestly, and to whom, often in ways that happen subconsciously.',
+  'Personal Vulnerability':'Your comfort in expressing genuine vulnerability and opening up emotionally to people you trust.',
+  'Social Recovery':'Your reaction to prolonged social contact, as well as your ability to handle and recharge from public interactions.',
+  'Expression Intensity':'The strength and frequency of your emotional reactions, and how deeply certain triggers affect you.',
+  'Conflict Orientation':'Your response to conflict and tension, and how you react to social issues or emotional strain between people.',
+  'Empathy Tendency':'Your tendency to notice, absorb, and respond to the emotions of the people around you.',
+  'Mastery Desire':'Your personal need to improve your skills or pursue goals all the way to mastery, beyond just competence.',
   'Recognition Sensitivity':'Your reaction towards recognition, validation, status, or reward as a result of your accomplishments.',
-  'Competitive Spirit':     'Your tendency to compare yourself with others and use competition as a source of motivation.',
-  'Persistence Style':      'Your response to setbacks or plateaus during projects — how you push through or disengage under difficulty.',
-  'Autonomy Preference':    'Your preference for independence and control over your own actions and methods when working.',
-  'Group Alignment':        'Your desire to be part of a close-knit group, and your sense of attachment to belonging to a community.',
+  'Competitive Spirit':'Your tendency to compare yourself with others and use competition as a source of motivation.',
+  'Persistence Style':'Your response to setbacks or plateaus during projects, how you push through or disengage under difficulty.',
+  'Autonomy Preference':'Your preference for independence and control over your own actions and methods when working.',
+  'Group Alignment':'Your desire to be part of a close-knit group, and your sense of attachment to belonging to a community.',
   'Aesthetic Experimentation':'Your interest in aesthetic shifts, style changes, and experimenting with how you present your identity.',
-  'Sincerity Orientation':  'Your level of directness and honesty in conversations, versus expressing yourself through humour or irony.',
-  'Taboo Tolerance':        'Your comfort or enjoyment with provocative, controversial, or boundary-pushing topics and humour.',
-  'Niche Engagement':       'Your depth of immersion into specific interests or hobbies, and how much they become part of your identity.',
-  'Performative Expression':'Your level of outward expressiveness — how dramatically or theatrically you project your personality.',
-  'Cultural Adaptability':  'Your willingness to adapt your tone and personal style to different social groups and contexts.',
+  'Sincerity Orientation':'Your level of directness and honesty in conversations, versus expressing yourself through humour or irony.',
+  'Taboo Tolerance':'Your comfort or enjoyment with provocative, controversial, or boundary-pushing topics and humour.',
+  'Niche Engagement':'Your depth of immersion into specific interests or hobbies, and how much they become part of your identity.',
+  'Performative Expression':'Your level of outward expressiveness, how dramatically or theatrically you project your personality.',
+  'Cultural Adaptability':'Your willingness to adapt your tone and personal style to different social groups and contexts.',
 };
 
-// Canonical subsection order used for encoding (must never change)
-var SUB_ORDER = [
+var SUB_ORDER=[
   'Theoretical Preference','Structure Inclination','Novelty Seeking',
   'Uncertainty Tolerance','Internal Assessment','Situational Flexibility',
   'Emotional Transparency','Personal Vulnerability','Social Recovery',
@@ -420,70 +535,69 @@ var ALL_QS=[
 ];
 
 var CAT_META={
-  'Cognition': {color:'#6C63D8',bg:'rgba(108,99,216,0.12)',desc:'How you process information, ideas, patterns, and uncertainty.'},
-  'Emotion':   {color:'#1D9E75',bg:'rgba(29,158,117,0.12)', desc:'How you interact with and control emotions personally and socially.'},
-  'Motivation':{color:'#E07B39',bg:'rgba(224,123,57,0.12)', desc:'How you energize and persevere effort in your projects.'},
-  'Expression':{color:'#C0366A',bg:'rgba(192,54,106,0.12)', desc:'How you externalize your personality to the world.'},
+  'Cognition':{color:'#6C63D8',bg:'rgba(108,99,216,0.12)',desc:'How you process information, ideas, patterns, and uncertainty.'},
+  'Emotion':  {color:'#1D9E75',bg:'rgba(29,158,117,0.12)',desc:'How you interact with and control emotions personally and socially.'},
+  'Motivation':{color:'#E07B39',bg:'rgba(224,123,57,0.12)',desc:'How you energize and persevere effort in your projects.'},
+  'Expression':{color:'#C0366A',bg:'rgba(192,54,106,0.12)',desc:'How you externalize your personality to the world.'},
 };
 var CAT_ORDER=['Cognition','Emotion','Motivation','Expression'];
 var BTN_SEL=['sel-1','sel-2','sel-3','sel-4','sel-5'];
 var MODE_INFO={
-  full: {label:'Full', count:144,time:'~15 min',reg:3,rev:3,nada:false},
-  lite: {label:'Lite', count:96, time:'~10 min',reg:2,rev:2,nada:false},
-  base: {label:'Base', count:48, time:'~5 min', reg:1,rev:1,nada:false},
-  nada: {label:'Nada', count:24, time:'~2 min', reg:0,rev:0,nada:true},
+  full:{label:'Full', count:144,time:'~15 min',reg:3,rev:3,nada:false},
+  lite:{label:'Lite', count:96, time:'~10 min',reg:2,rev:2,nada:false},
+  base:{label:'Base', count:48, time:'~5 min', reg:1,rev:1,nada:false},
+  nada:{label:'Nada', count:24, time:'~2 min', reg:0,rev:0,nada:true},
 };
 
-var selectedMode=null,questions=[],answers={},currentPage=0,PAGE_SIZE=16,totalPages=0,chartInstances=[];
+// Profile colours for comparison (A=indigo, B=pink)
+var CMP_A={border:'#3a3585',bg:'rgba(58,53,133,0.10)',point:'#3a3585'};
+var CMP_B={border:'#C0366A',bg:'rgba(192,54,106,0.10)',point:'#C0366A'};
+
+var selectedMode=null,questions=[],answers={},currentPage=0,PAGE_SIZE=16,totalPages=0;
+var chartInstances=[],cmpChartInstances=[];
 var isViewingShared=false;
 
-// ── Result code encode/decode ────────────────────────────────────────────────
-// Format: CEME-<mode>-<base64 of 24 bytes, one per subsection score 0-100>
-function encodeResults(mode, scores) {
-  var bytes = [];
-  SUB_ORDER.forEach(function(sub) {
-    var val = 50; // default midpoint if missing
-    for (var cat in scores) {
-      if (scores[cat][sub] !== undefined) { val = scores[cat][sub]; break; }
-    }
-    bytes.push(Math.min(100, Math.max(0, Math.round(val))));
+// ── Encode / Decode ──────────────────────────────────────────────────────────
+function encodeResults(mode,scores){
+  var bytes=[];
+  SUB_ORDER.forEach(function(sub){
+    var val=50;
+    for(var cat in scores){if(scores[cat][sub]!==undefined){val=scores[cat][sub];break;}}
+    bytes.push(Math.min(100,Math.max(0,Math.round(val))));
   });
-  // encode bytes to base64
-  var binary = '';
-  bytes.forEach(function(b) { binary += String.fromCharCode(b); });
-  var b64 = btoa(binary);
-  return 'CEME-' + mode + '-' + b64;
+  var binary='';bytes.forEach(function(b){binary+=String.fromCharCode(b);});
+  return 'CEME-'+mode+'-'+btoa(binary);
 }
 
-function decodeResults(code) {
-  try {
-    var parts = code.trim().split('-');
-    if (parts.length < 3 || parts[0] !== 'CEME') return null;
-    var mode = parts[1];
-    if (!MODE_INFO[mode]) return null;
-    var b64 = parts.slice(2).join('-'); // rejoin in case base64 had dashes (it won't, but safe)
-    var binary = atob(b64);
-    if (binary.length !== 24) return null;
-    var scores = {};
-    // build cat->sub structure
-    ALL_QS.forEach(function(q) { if (!scores[q.cat]) scores[q.cat] = {}; });
-    SUB_ORDER.forEach(function(sub, i) {
-      var val = binary.charCodeAt(i);
-      for (var cat in scores) {
-        // find which cat this sub belongs to
-        var found = false;
-        ALL_QS.forEach(function(q) { if (q.sub === sub && q.cat === cat) found = true; });
-        if (found) { scores[cat][sub] = val; break; }
+function decodeResults(code){
+  try{
+    var parts=code.trim().split('-');
+    if(parts.length<3||parts[0]!=='CEME') return null;
+    var mode=parts[1];
+    if(!MODE_INFO[mode]) return null;
+    var b64=parts.slice(2).join('-');
+    var binary=atob(b64);
+    if(binary.length!==24) return null;
+    var scores={};
+    ALL_QS.forEach(function(q){if(!scores[q.cat])scores[q.cat]={};});
+    SUB_ORDER.forEach(function(sub,i){
+      var val=binary.charCodeAt(i);
+      for(var cat in scores){
+        var found=false;
+        ALL_QS.forEach(function(q){if(q.sub===sub&&q.cat===cat)found=true;});
+        if(found){scores[cat][sub]=val;break;}
       }
     });
-    return { mode: mode, scores: scores };
-  } catch(e) { return null; }
+    return{mode:mode,scores:scores};
+  }catch(e){return null;}
 }
 
-// ── Core quiz logic ──────────────────────────────────────────────────────────
+// ── Helpers ──────────────────────────────────────────────────────────────────
 function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function showScreen(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});document.getElementById(id).classList.add('active');}
+function subCat(sub){for(var i=0;i<ALL_QS.length;i++){if(ALL_QS[i].sub===sub)return ALL_QS[i].cat;}return 'Cognition';}
 
+// ── Quiz ─────────────────────────────────────────────────────────────────────
 function selectMode(m){
   selectedMode=m;
   document.querySelectorAll('.mode-card').forEach(function(c){c.classList.remove('selected');});
@@ -496,21 +610,12 @@ function selectMode(m){
 
 function buildQuestions(mode){
   var groups={};
-  ALL_QS.forEach(function(q){
-    var key=q.cat+'||'+q.sub;
-    if(!groups[key]) groups[key]={reg:[],rev:[]};
-    if(q.rev) groups[key].rev.push(q); else groups[key].reg.push(q);
-  });
-  var result=[];
-  var info=MODE_INFO[mode];
-  Object.keys(groups).forEach(function(key){
-    var g=groups[key];
-    if(info.nada){
-      var pool=g.reg.concat(g.rev);
-      result.push(pool[Math.floor(Math.random()*pool.length)]);
-    } else {
-      result=result.concat(shuffle(g.reg).slice(0,info.reg)).concat(shuffle(g.rev).slice(0,info.rev));
-    }
+  ALL_QS.forEach(function(q){var k=q.cat+'||'+q.sub;if(!groups[k])groups[k]={reg:[],rev:[]};if(q.rev)groups[k].rev.push(q);else groups[k].reg.push(q);});
+  var result=[];var info=MODE_INFO[mode];
+  Object.keys(groups).forEach(function(k){
+    var g=groups[k];
+    if(info.nada){var pool=g.reg.concat(g.rev);result.push(pool[Math.floor(Math.random()*pool.length)]);}
+    else{result=result.concat(shuffle(g.reg).slice(0,info.reg)).concat(shuffle(g.rev).slice(0,info.rev));}
   });
   return shuffle(result);
 }
@@ -535,11 +640,8 @@ function renderPage(){
   for(var i=start;i<end;i++){
     (function(idx){
       var q=questions[idx];
-      var block=document.createElement('div');
-      block.className='qblock'+(answers[idx]!==undefined?' answered':'');
-      block.id='qblock-'+idx;
-      var qtxt=document.createElement('div');qtxt.className='qtext';
-      qtxt.textContent=(idx+1)+'. '+q.text;block.appendChild(qtxt);
+      var block=document.createElement('div');block.className='qblock'+(answers[idx]!==undefined?' answered':'');block.id='qblock-'+idx;
+      var qtxt=document.createElement('div');qtxt.className='qtext';qtxt.textContent=(idx+1)+'. '+q.text;block.appendChild(qtxt);
       var wrap=document.createElement('div');wrap.className='likert-wrap';
       var row=document.createElement('div');row.className='likert-row';
       for(var v=1;v<=5;v++){
@@ -569,14 +671,14 @@ function navigate(dir){
     for(var i=start;i<end;i++){if(answers[i]===undefined){document.getElementById('warn-msg').style.display='block';return;}}
     if(currentPage===totalPages-1){showResults();return;}
     currentPage++;
-  } else {if(currentPage>0) currentPage--;}
+  } else{if(currentPage>0)currentPage--;}
   window.scrollTo(0,0);renderPage();
 }
 
 function computeScores(){
   var totals={},counts={};
   questions.forEach(function(q,i){
-    if(answers[i]===undefined) return;
+    if(answers[i]===undefined)return;
     var score=q.rev?(6-answers[i]):answers[i];
     var key=q.cat+'||'+q.sub;
     totals[key]=(totals[key]||0)+score;counts[key]=(counts[key]||0)+1;
@@ -584,13 +686,14 @@ function computeScores(){
   var result={};
   Object.keys(totals).forEach(function(key){
     var p=key.split('||'),cat=p[0],sub=p[1];
-    if(!result[cat]) result[cat]={};
+    if(!result[cat])result[cat]={};
     result[cat][sub]=Math.round((totals[key]/counts[key]/5)*100);
   });
   return result;
 }
 
-function showTooltip(cat, sub){
+// ── Tooltip ──────────────────────────────────────────────────────────────────
+function showTooltip(cat,sub){
   document.getElementById('tooltip-cat').textContent=cat;
   document.getElementById('tooltip-cat').style.color=CAT_META[cat].color;
   document.getElementById('tooltip-title').textContent=sub;
@@ -599,37 +702,29 @@ function showTooltip(cat, sub){
 }
 function hideTooltip(){document.getElementById('tooltip-overlay').classList.remove('show');}
 
+// ── Results ──────────────────────────────────────────────────────────────────
 function showResults(){
   chartInstances.forEach(function(c){c.destroy();});chartInstances=[];
-  var scores=computeScores();
-  renderResults(selectedMode, scores, false);
+  renderResults(selectedMode,computeScores(),false);
 }
 
-function renderResults(mode, scores, isShared) {
+function renderResults(mode,scores,isShared){
   var info=MODE_INFO[mode];
   showScreen('results-screen');
-  document.getElementById('results-sub').textContent='Based on '+MODE_INFO[mode].count+' responses · '+info.label+' mode';
-
-  // viewing banner
-  document.getElementById('viewing-banner').style.display = isShared ? 'block' : 'none';
-
-  // code section — only show for own results
-  var codeSection = document.getElementById('code-section');
-  if (isShared) {
-    codeSection.style.display = 'none';
-  } else {
-    codeSection.style.display = 'block';
-    var code = encodeResults(mode, scores);
-    document.getElementById('code-text').textContent = code;
-    document.getElementById('copy-btn').textContent = 'Copy';
-    document.getElementById('copy-btn').className = 'copy-btn';
+  document.getElementById('results-sub').textContent='Based on '+info.count+' responses · '+info.label+' mode';
+  document.getElementById('viewing-banner').style.display=isShared?'block':'none';
+  var cs=document.getElementById('code-section');
+  if(isShared){cs.style.display='none';}
+  else{
+    cs.style.display='block';
+    document.getElementById('code-text').textContent=encodeResults(mode,scores);
+    document.getElementById('copy-btn').textContent='Copy';
+    document.getElementById('copy-btn').className='copy-btn';
   }
-
   var grid=document.getElementById('charts-grid');grid.innerHTML='';
   CAT_ORDER.forEach(function(cat){
     var meta=CAT_META[cat];
-    var subs=[];
-    ALL_QS.forEach(function(q){if(q.cat===cat&&subs.indexOf(q.sub)===-1) subs.push(q.sub);});
+    var subs=[];ALL_QS.forEach(function(q){if(q.cat===cat&&subs.indexOf(q.sub)===-1)subs.push(q.sub);});
     var vals=subs.map(function(s){return scores[cat]&&scores[cat][s]!==undefined?scores[cat][s]:0;});
     var card=document.createElement('div');card.className='chart-card';
     var header=document.createElement('div');header.className='card-header';
@@ -637,25 +732,18 @@ function renderResults(mode, scores, isShared) {
     var h3=document.createElement('h3');h3.textContent=cat;header.appendChild(h3);card.appendChild(header);
     var desc=document.createElement('div');desc.className='chart-desc';desc.textContent=meta.desc;card.appendChild(desc);
     var wrap=document.createElement('div');wrap.className='canvas-wrap';
-    var canvas=document.createElement('canvas');canvas.id='chart-'+cat;
-    wrap.appendChild(canvas);card.appendChild(wrap);
+    var canvas=document.createElement('canvas');canvas.id='chart-'+cat;wrap.appendChild(canvas);card.appendChild(wrap);
     var barList=document.createElement('div');
     subs.forEach(function(s,i){
       var row=document.createElement('div');row.className='sbar-row';
       var lblWrap=document.createElement('div');lblWrap.className='sbar-label-wrap';
       var lbl=document.createElement('span');lbl.className='sbar-label';lbl.textContent=s;
-      (function(catName,subName){
-        lbl.addEventListener('click',function(){showTooltip(catName,subName);});
-        lbl.title='Click to learn more';
-      })(cat,s);
+      (function(c2,s2){lbl.addEventListener('click',function(){showTooltip(c2,s2);});lbl.title='Click to learn more';})(cat,s);
       var icon=document.createElement('span');icon.className='info-icon';icon.textContent='ⓘ';
-      (function(catName,subName){
-        icon.addEventListener('click',function(){showTooltip(catName,subName);});
-      })(cat,s);
+      (function(c2,s2){icon.addEventListener('click',function(){showTooltip(c2,s2);});})(cat,s);
       lblWrap.appendChild(lbl);lblWrap.appendChild(icon);
       var bg=document.createElement('div');bg.className='sbar-bg';
-      var fill=document.createElement('div');fill.className='sbar-fill';
-      fill.style.width=vals[i]+'%';fill.style.background=meta.color;bg.appendChild(fill);
+      var fill=document.createElement('div');fill.className='sbar-fill';fill.style.width=vals[i]+'%';fill.style.background=meta.color;bg.appendChild(fill);
       var v=document.createElement('span');v.className='sbar-val';v.textContent=vals[i]+'%';
       row.appendChild(lblWrap);row.appendChild(bg);row.appendChild(v);barList.appendChild(row);
     });
@@ -672,6 +760,177 @@ function renderResults(mode, scores, isShared) {
   });
 }
 
+// ── Comparison logic ─────────────────────────────────────────────────────────
+function simPct(a,b){
+  // similarity = 100 - mean absolute difference across subsections in this set
+  var total=0;
+  a.forEach(function(v,i){total+=Math.abs(v-b[i]);});
+  return Math.round(100-(total/a.length));
+}
+
+function runComparison(){
+  var rawA=document.getElementById('cmp-input-a').value.trim();
+  var rawB=document.getElementById('cmp-input-b').value.trim();
+  var decA=decodeResults(rawA);
+  var decB=decodeResults(rawB);
+  var ok=true;
+  document.getElementById('cmp-error-a').style.display=decA?'none':'block';
+  document.getElementById('cmp-error-b').style.display=decB?'none':'block';
+  if(!decA||!decB) return;
+
+  cmpChartInstances.forEach(function(c){c.destroy();});cmpChartInstances=[];
+
+  // Build flat score arrays in SUB_ORDER
+  function flatScores(scores){
+    return SUB_ORDER.map(function(sub){
+      for(var cat in scores){if(scores[cat][sub]!==undefined)return scores[cat][sub];}
+      return 50;
+    });
+  }
+  var flatA=flatScores(decA.scores);
+  var flatB=flatScores(decB.scores);
+
+  // Per-subsection divergence
+  var divData=SUB_ORDER.map(function(sub,i){
+    return{sub:sub,cat:subCat(sub),diff:Math.abs(flatA[i]-flatB[i]),vA:flatA[i],vB:flatB[i]};
+  });
+  divData.sort(function(a,b){return b.diff-a.diff;});
+
+  // Overall similarity
+  var overallSim=simPct(flatA,flatB);
+
+  // Per-category similarity
+  var catSims={};
+  CAT_ORDER.forEach(function(cat){
+    var subs=[];ALL_QS.forEach(function(q){if(q.cat===cat&&subs.indexOf(q.sub)===-1)subs.push(q.sub);});
+    var vA=subs.map(function(s){return decA.scores[cat]&&decA.scores[cat][s]!==undefined?decA.scores[cat][s]:50;});
+    var vB=subs.map(function(s){return decB.scores[cat]&&decB.scores[cat][s]!==undefined?decB.scores[cat][s]:50;});
+    catSims[cat]=simPct(vA,vB);
+  });
+
+  // ── Render ──
+  showScreen('compare-results-screen');
+  var modeLabel=MODE_INFO[decA.mode].label+(decA.mode!==decB.mode?' / '+MODE_INFO[decB.mode].label:'');
+  document.getElementById('cmp-results-sub').textContent='Mode: '+modeLabel;
+
+  // overall sim
+  document.getElementById('sim-big-pct').textContent=overallSim+'%';
+  document.getElementById('sim-big-bar').style.width=overallSim+'%';
+  document.getElementById('sim-cat-c-pct').textContent=catSims['Cognition']+'%';
+  document.getElementById('sim-cat-e-pct').textContent=catSims['Emotion']+'%';
+  document.getElementById('sim-cat-m-pct').textContent=catSims['Motivation']+'%';
+  document.getElementById('sim-cat-x-pct').textContent=catSims['Expression']+'%';
+
+  // colour the big bar by similarity
+  var simColor=overallSim>=70?'#1D9E75':overallSim>=45?'#E07B39':'#C0366A';
+  document.getElementById('sim-big-pct').style.color=simColor;
+  document.getElementById('sim-big-bar').style.background=simColor;
+
+  // per-cat cards
+  var catGrid=document.getElementById('sim-cat-grid');catGrid.innerHTML='';
+  CAT_ORDER.forEach(function(cat){
+    var meta=CAT_META[cat];var pct=catSims[cat];
+    var card=document.createElement('div');card.className='sim-cat-card';
+    var nm=document.createElement('div');nm.className='sim-cat-name';nm.style.color=meta.color;nm.textContent=cat;card.appendChild(nm);
+    var p=document.createElement('div');p.className='sim-cat-pct';p.style.color=meta.color;p.textContent=pct+'%';card.appendChild(p);
+    var bg=document.createElement('div');bg.className='sim-cat-bar-bg';
+    var fill=document.createElement('div');fill.className='sim-cat-bar-fill';fill.style.width=pct+'%';fill.style.background=meta.color;
+    bg.appendChild(fill);card.appendChild(bg);
+    catGrid.appendChild(card);
+  });
+
+  // divergence rows
+  function makeDivRows(container,items,showTag,tagClass,tagText){
+    container.innerHTML='';
+    items.forEach(function(d,rank){
+      var row=document.createElement('div');row.className='div-row';
+      var rk=document.createElement('div');rk.className='div-rank';rk.textContent=(rank+1)+'.';row.appendChild(rk);
+      var subWrap=document.createElement('div');subWrap.style.flex='1';subWrap.style.display='flex';subWrap.style.alignItems='center';subWrap.style.gap='4px';
+      var catDot=document.createElement('div');catDot.className='div-cat-dot';catDot.style.background=CAT_META[d.cat].color;subWrap.appendChild(catDot);
+      var subLbl=document.createElement('span');subLbl.className='div-sub';subLbl.textContent=d.sub;subWrap.appendChild(subLbl);
+      if(showTag&&rank===0){var tag=document.createElement('span');tag.className=tagClass;tag.textContent=tagText;subWrap.appendChild(tag);}
+      row.appendChild(subWrap);
+      // bar
+      var bwrap=document.createElement('div');bwrap.className='div-bar-wrap';
+      var bfill=document.createElement('div');bfill.className='div-bar-fill';bfill.style.width=d.diff+'%';bfill.style.background=CAT_META[d.cat].color;
+      bwrap.appendChild(bfill);row.appendChild(bwrap);
+      var dv=document.createElement('div');dv.className='div-val';dv.textContent=d.diff+'pt';row.appendChild(dv);
+      // who's higher arrow
+      var arrow=document.createElement('div');arrow.className='div-arrow';
+      arrow.style.color=d.vA>d.vB?CMP_A.border:d.vB>d.vA?CMP_B.border:'#aaa';
+      arrow.textContent=d.vA>d.vB?'A↑':d.vB>d.vA?'B↑':'=';row.appendChild(arrow);
+      container.appendChild(row);
+    });
+  }
+  makeDivRows(document.getElementById('div-most'),divData.slice(0,5),true,'most-tag','most different');
+  var leastData=divData.slice().reverse();
+  makeDivRows(document.getElementById('div-least'),leastData.slice(0,5),true,'least-tag','most similar');
+
+  // Overlapping radar charts
+  var cmpGrid=document.getElementById('cmp-charts-grid');cmpGrid.innerHTML='';
+  CAT_ORDER.forEach(function(cat){
+    var meta=CAT_META[cat];
+    var subs=[];ALL_QS.forEach(function(q){if(q.cat===cat&&subs.indexOf(q.sub)===-1)subs.push(q.sub);});
+    var vA=subs.map(function(s){return decA.scores[cat]&&decA.scores[cat][s]!==undefined?decA.scores[cat][s]:0;});
+    var vB=subs.map(function(s){return decB.scores[cat]&&decB.scores[cat][s]!==undefined?decB.scores[cat][s]:0;});
+
+    var card=document.createElement('div');card.className='cmp-chart-card';
+    // header
+    var hdr=document.createElement('div');hdr.className='card-header';
+    var dot=document.createElement('div');dot.className='cat-dot';dot.style.background=meta.color;hdr.appendChild(dot);
+    var h3=document.createElement('h3');h3.textContent=cat;hdr.appendChild(h3);card.appendChild(hdr);
+    // legend
+    var leg=document.createElement('div');leg.className='cmp-legend';
+    ['A','B'].forEach(function(ltr){
+      var col=ltr==='A'?CMP_A.border:CMP_B.border;
+      var li=document.createElement('div');li.className='cmp-legend-item';
+      var ld=document.createElement('div');ld.className='cmp-legend-dot';ld.style.background=col;ld.style.height='3px';ld.style.width='14px';ld.style.borderRadius='2px';
+      li.appendChild(ld);li.appendChild(document.createTextNode('Profile '+ltr));
+      leg.appendChild(li);
+    });
+    card.appendChild(leg);
+    // canvas
+    var wrap=document.createElement('div');wrap.className='canvas-wrap';
+    var canvas=document.createElement('canvas');canvas.id='cmp-chart-'+cat;wrap.appendChild(canvas);card.appendChild(wrap);
+    // dual sbars
+    var barList=document.createElement('div');
+    subs.forEach(function(s,i){
+      var dRow=document.createElement('div');dRow.className='dual-sbar-row';
+      var labelRow=document.createElement('div');labelRow.className='dual-sbar-label-row';
+      var lbl=document.createElement('span');lbl.className='dual-sbar-label';lbl.textContent=s;
+      (function(c2,s2){lbl.addEventListener('click',function(){showTooltip(c2,s2);});})(cat,s);
+      var ico=document.createElement('span');ico.className='dual-sbar-info';ico.textContent=' ⓘ';
+      (function(c2,s2){ico.addEventListener('click',function(){showTooltip(c2,s2);});})(cat,s);
+      labelRow.appendChild(lbl);labelRow.appendChild(ico);dRow.appendChild(labelRow);
+      var dbars=document.createElement('div');dbars.className='dual-bars';
+      [['A',vA[i],CMP_A.border],['B',vB[i],CMP_B.border]].forEach(function(x){
+        var line=document.createElement('div');line.className='dual-bar-line';
+        var who=document.createElement('div');who.className='dual-bar-who';who.style.background=x[2];who.title='Profile '+x[0];
+        var bg=document.createElement('div');bg.className='dual-bar-bg';
+        var fill=document.createElement('div');fill.className='dual-bar-fill';fill.style.width=x[1]+'%';fill.style.background=x[2];bg.appendChild(fill);
+        var val=document.createElement('span');val.className='dual-bar-val';val.textContent=x[1]+'%';
+        line.appendChild(who);line.appendChild(bg);line.appendChild(val);dbars.appendChild(line);
+      });
+      dRow.appendChild(dbars);barList.appendChild(dRow);
+    });
+    card.appendChild(barList);cmpGrid.appendChild(card);
+
+    var shortLabels=subs.map(function(s){return s.split(' ').slice(0,2).join('\n');});
+    var inst=new Chart(canvas,{
+      type:'radar',
+      data:{labels:shortLabels,datasets:[
+        {label:'Profile A',data:vA,borderColor:CMP_A.border,backgroundColor:CMP_A.bg,pointBackgroundColor:CMP_A.point,pointRadius:3,borderWidth:2},
+        {label:'Profile B',data:vB,borderColor:CMP_B.border,backgroundColor:CMP_B.bg,pointBackgroundColor:CMP_B.point,pointRadius:3,borderWidth:2}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{r:{min:0,max:100,ticks:{stepSize:25,font:{size:9},color:'#bbb',backdropColor:'transparent'},
+          pointLabels:{font:{size:9},color:'#666'},grid:{color:'rgba(0,0,0,0.07)'},angleLines:{color:'rgba(0,0,0,0.07)'}}}}
+    });
+    cmpChartInstances.push(inst);
+  });
+}
+
 // ── Event listeners ──────────────────────────────────────────────────────────
 document.getElementById('start-btn').addEventListener('click',startQuiz);
 document.getElementById('prev-btn').addEventListener('click',function(){navigate(-1);});
@@ -683,41 +942,35 @@ document.getElementById('retake-btn').addEventListener('click',function(){
   document.getElementById('load-error').style.display='none';
 });
 document.getElementById('tooltip-close').addEventListener('click',hideTooltip);
-document.getElementById('tooltip-overlay').addEventListener('click',function(e){if(e.target===this) hideTooltip();});
+document.getElementById('tooltip-overlay').addEventListener('click',function(e){if(e.target===this)hideTooltip();});
 
-// Copy button
 document.getElementById('copy-btn').addEventListener('click',function(){
   var code=document.getElementById('code-text').textContent;
-  navigator.clipboard.writeText(code).then(function(){
-    var btn=document.getElementById('copy-btn');
-    btn.textContent='Copied!';btn.className='copy-btn copied';
-    setTimeout(function(){btn.textContent='Copy';btn.className='copy-btn';},2000);
-  }).catch(function(){
-    // fallback
-    var ta=document.createElement('textarea');
-    ta.value=code;document.body.appendChild(ta);ta.select();
-    document.execCommand('copy');document.body.removeChild(ta);
-    var btn=document.getElementById('copy-btn');
-    btn.textContent='Copied!';btn.className='copy-btn copied';
-    setTimeout(function(){btn.textContent='Copy';btn.className='copy-btn';},2000);
+  var btn=document.getElementById('copy-btn');
+  var done=function(){btn.textContent='Copied!';btn.className='copy-btn copied';setTimeout(function(){btn.textContent='Copy';btn.className='copy-btn';},2000);};
+  navigator.clipboard.writeText(code).then(done).catch(function(){
+    var ta=document.createElement('textarea');ta.value=code;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);done();
   });
 });
 
-// Load code button
 document.getElementById('load-btn').addEventListener('click',function(){
   var raw=document.getElementById('load-input').value.trim();
-  var decoded=decodeResults(raw);
-  if(!decoded){
-    document.getElementById('load-error').style.display='block';
-    return;
-  }
+  var dec=decodeResults(raw);
+  if(!dec){document.getElementById('load-error').style.display='block';return;}
   document.getElementById('load-error').style.display='none';
-  selectedMode=decoded.mode;
-  renderResults(decoded.mode, decoded.scores, true);
+  selectedMode=dec.mode;
+  chartInstances.forEach(function(c){c.destroy();});chartInstances=[];
+  renderResults(dec.mode,dec.scores,true);
 });
-// also allow pressing Enter in the input
-document.getElementById('load-input').addEventListener('keydown',function(e){
-  if(e.key==='Enter') document.getElementById('load-btn').click();
+document.getElementById('load-input').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('load-btn').click();});
+
+document.getElementById('compare-btn').addEventListener('click',function(){showScreen('compare-screen');});
+document.getElementById('cmp-back-btn').addEventListener('click',function(){showScreen('intro-screen');});
+document.getElementById('cmp-run-btn').addEventListener('click',runComparison);
+document.getElementById('cmp-results-back-btn').addEventListener('click',function(){showScreen('compare-screen');});
+document.getElementById('cmp-results-home-btn').addEventListener('click',function(){
+  selectedMode=null;showScreen('intro-screen');
+  document.getElementById('load-input').value='';document.getElementById('load-error').style.display='none';
 });
 </script>
 </body>
